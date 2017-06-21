@@ -31,7 +31,7 @@ public class 141_LinkedListCycle {
         ListNode fast = head.next;
 
         while(fast != null && fast.next != null) {
-        	if (slow == fas) {
+        	if (slow == fast) {
         		return true;
         	}
         	slow = slow.next;
