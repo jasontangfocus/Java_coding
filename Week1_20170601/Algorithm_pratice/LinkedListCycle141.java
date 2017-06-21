@@ -18,8 +18,8 @@ Can you solve it without using extra space?
  */
 
 // idea is we use both fast and slow pointer to track the ListNode
-
-public class 141_LinkedListCycle {
+import java.*;
+public class LinkedListCycle141 {
     public boolean hasCycle(ListNode head) {
         //Corner Case
         if (head == null || head.next == null) {

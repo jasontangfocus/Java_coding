@@ -12,7 +12,7 @@ Follow up:
 What if the inputs contain unicode characters? How would you adapt your solution to such case?
 */
 
-public class 242_ValidAnagram {
+public class 242ValidAnagram {
 	public boolean isAnagram(String s, String t) {
 		//corner case
 		if (s.equals(t)) {

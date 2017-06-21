@@ -12,7 +12,7 @@ Your function should return length = 2, with the first two elements of nums bein
 */ 
 
 
-Class 27_RemoveElement {
+Class 27RemoveElement {
 	public int 27_RemoveElement(int[], int val) {
 		//corner case
 		if (nums == null || nums.length == 0) {

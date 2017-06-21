@@ -9,7 +9,7 @@ Credits:
 Special thanks to @mithmatt for adding this problem and creating all test cases.
 */
 
-public class 203_RemoveLinkedListElements {
+public class 203RemoveLinkedListElements {
 	public ListNode removeElements(ListNode head, int val) {
 		//corner case
 		if (head == null) {
