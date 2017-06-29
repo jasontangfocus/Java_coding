@@ -15,10 +15,7 @@ The array may contain duplicates.
 /*
 
 Q:	if there are duplicate numbers existed in the array
-A:	the boundary duplicates will not affect the choose of the mid value. 
-	
-	Then we can use the midIdx to determin the target index in the given rotated array if existed.
-
+A:	{1131} special case
 
 */
 public class SearchInSortedArray2 {
@@ -38,5 +35,4 @@ public class SearchInSortedArray2 {
         }
         
         return false;
-    }
 }
