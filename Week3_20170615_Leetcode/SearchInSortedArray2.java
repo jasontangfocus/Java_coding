@@ -12,8 +12,31 @@ Write a function to determine if a given target is in the array.
 The array may contain duplicates.
 */
 
+/*
+
+Q:	if there are duplicate numbers existed in the array
+A:	the boundary duplicates will not affect the choose of the mid value. 
+	
+	Then we can use the midIdx to determin the target index in the given rotated array if existed.
+
+
+*/
 public class SearchInSortedArray2 {
-	 public boolean search(int[] nums, int target) {
+	public boolean search(int[] nums, int target) {
+        //special case
+        if (nums == null || nums.length ==0) {
+            return false;
+        }
         
+        //normal 
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                return true;
+            } else {
+                continue;
+            }
+        }
+        
+        return false;
     }
 }
