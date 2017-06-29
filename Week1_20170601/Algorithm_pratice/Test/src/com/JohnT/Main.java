@@ -12,6 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Human tang = new Human();
+        Human.sayHistatic();
+
         long starTime = System.nanoTime();
         for (int i = 0; i < 1000; i++) {
             for (int j = 0; j < 1000; j++) {
@@ -33,4 +36,22 @@ public class Main {
     }
 
 
+
+
+}
+
+
+class Human {
+
+    public static void sayHi2() {
+
+    }
+
+    protected static void sayHi() {
+        System.out.println("Hello");
+    }
+
+    public  static void sayHistatic() {
+
+    }
 }
