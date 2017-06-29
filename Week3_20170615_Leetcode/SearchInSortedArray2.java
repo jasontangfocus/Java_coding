@@ -35,4 +35,16 @@ public class SearchInSortedArray2 {
         }
         
         return false;
+
+        /*Binarysearch*/
+        /*if (nums == null || nums.length ==0) {
+                return false;
+        }
+        
+        Arrays.sort(nums);
+        
+        int searchResult = Arrays.binarySearch(nums, target);
+        System.out.println(searchResult);
+        return searchResult >= 0 ? true : false;
+    }*/
 }
