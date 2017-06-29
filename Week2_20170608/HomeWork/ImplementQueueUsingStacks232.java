@@ -26,31 +26,28 @@ You may assume that all operations are valid (for example, no pop or peek operat
 public class ImplementQueueUsingStacks232 {
 
 	Deque<Integer> myQueue;
-    
+
     /** Initialize your data structure here. */
     public ImplementQueueUsingStacks232() {
         myQueue = new ArrayDeque<>();
     }
     
-    /** Push element x onto stack. */
+    /** Push element x to the back of queue. */
     public void push(int x) {
-        myQueue.addFirst(x);
+        myQueue.addLast(x);
     }
     
-    /** Removes the element on top of the stack and returns that element. */
+    /** Removes the element from in front of queue and returns that element. */
     public int pop() {
-        while (myQueue.peekFirst() == null) {
-            myQueue.pollFirst();
-        }
-        return myQueue.pop();
+       return myQueue.removeFirst();
     }
     
-    /** Get the top element. */
-    public int top() {
-        return myQueue.getFirst();
+    /** Get the front element. */
+    public int peek() {
+    	return myQueue.peekFirst();
     }
     
-    /** Returns whether the stack is empty. */
+    /** Returns whether the queue is empty. */
     public boolean empty() {
         return myQueue.isEmpty();
     }
