@@ -20,7 +20,7 @@ public static void preOrderTraverse(TreeNode rootnode) {
 
 	//normal case
 	TreeNode p = rootnode;
-	Deque<TreeNode> stack = new ArrayList<TreeNode>();
+	Deque<TreeNode> stack = new LinkedList<TreeNode>();
 	stack.push(p);
 
 	while (stack.isEmpty() != true) {
