@@ -34,7 +34,7 @@ public static void inOrderTraverse(TreeNode rootnode) {
 		TreeNode node = stack.pop();
 		System.out.println(node.value);
 		current = node.rightchild;
-	}
+		}
 	}
 	
 
