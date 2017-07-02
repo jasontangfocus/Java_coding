@@ -3,29 +3,6 @@ List是java的一个接口，有四种常见的实现方法，ArrayList, LinkedL
 其中前三种是支持数据的线性存储和定位
 */
 
-/*
-								Collection
-								<<interface>>
-									|
-									|
-									|
-	  Set                          List             Queue                              <<interface>> ---------- <<interface>>-----<<interface>>
-		|
-       /| \
-      / |  \(interface)
-     /  |   \(sortedset)
-    /   |    \ 
-   /    |     \
-HashSet |    TreeSet
-		|
-  LinkedHashSet    
 
 
 
-
-
-
-
-
-
-*/
