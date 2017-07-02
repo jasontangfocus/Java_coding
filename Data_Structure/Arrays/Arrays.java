@@ -88,21 +88,16 @@ public class Solution {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*JAVA相关方法*/
+/*
+1.	定位：	arr[i]	O(1)
+2.	插入：	arr[i] = newElem, 同时将后面的元素顺序后移， 此时有可能溢出，需要选择跑出异常或者删除类似。	O(N)
+3.	复制：	a.	Arrays.copyOf(AnyType[] arr, int len)
+			b.	System.arrcopy(AnyType[] one, int start, AnyType[] dest, int end, int len)
+			c.	arr.clone
+4.	遍历		使用for loop循环	O(N)
+5.	相等		"==", Arrays.equals和Arrays.deepEquals()
+6.	其他		sort():用来对array进行排序。binarySearch():	在排好序的array中寻找原元素，System.arraycopy(): array的复制。
+*/
 
 
