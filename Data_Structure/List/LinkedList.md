@@ -143,8 +143,11 @@ Methods
 
         //Normal case
         while (cur != null) {
+            //保存当前地址下一个指针的指向
             next = cur.next;
+            //将当前地址next指针指向前一个地址
             cur.next = prev;
+            //将当前指针向下移到next地址 
             prev = cur;
             cur = next;
         }
@@ -152,6 +155,45 @@ Methods
     }
 ````
 
+2. Recursive
+````java
+    public ListNode reverseList(ListNode head) {
+        //Edge case
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        //Normal case
+        ListNode second = head.next;
+        head.next = null;
+
+        ListNode rest = reverseList(second);
+        second.next = head;
+
+        return rest;
+    }
+````
+
+#### JAVA线程安全机制
+
+##### Collections.synchronizedList
+returns synchronized(thread-safe) list backed by the specified list. In order to guarantee serial access, it is critical that all access to the backing list is accomplished through the returned list.
+
+````java
+    List list = Collections.synchronizedList(new LinkedList())
+````
+
+##### Vector
+怎么实现线程安全？
+
+- Vector implements a dynamic array. It is similar to ArrayList, but with two differences:
+    1. Vector is synchonized 线程安全。This means if one thread is working on Vector, no other thread can get a hold of it. Unlike ArrayList, only one thread can perform an operation on vector at a time.
+    2. Vector contains many legacy methods that are not part of the collection framework.
+- Vector proves to be very useful if you don't know the size of the array in advance or you just need one that can change sizes over the lifetime of a program.
+- Fail fast
+Vector is fail fast. If the Vector is structurally modified at any time after the Iterator is created, in any way except through the Iterator's own remove or add methods, the Iterator will throw a ConcurrentModificationException.
+
+ArrayList iterator is also fail-fast.
 
 
 
