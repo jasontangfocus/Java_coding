@@ -42,6 +42,8 @@ class OuterClass {
 ````
 
 #### Node的实现
+
+1. 
 ````java
 private static class Node<AnyType> {
     private AnyType data;
@@ -53,6 +55,103 @@ private static class Node<AnyType> {
     }
 }
 ````
+
+2.
+Methods
+- Constructor
+有了内部类，我们就可以利用它来实现LinkedList了，我们只须对每一个实例保存该list的第一个node，也就是head node，就可以实现它的所有方法
+````java
+    public MySinglyLinkedList() {
+        head = null;
+    }
+````
+
+- addFirst
+像addFirst这样的方法，实现方式是非常直观的，只要完成“重新连接”的过程就可以了。
+````java
+    public void addFirst(AnyType data) {
+        head = new Node<AnyType>(data, head);
+    }
+````
+
+- insertBefore
+一个比较难实现的方法是insertBefore, 就是要先找到一个元素，再往它前面添加一个元素。难度在于，当我们找到这个元素时，我们已经失去了它自己的链接，只有它自带的next链接。那么，我们在找它的时候，就需要能够一次“看到”两个元素，当第二个元素符合搜索条件时，在第一和第二个元素中间插入新元素
+````java
+    public void insertBefore(AnyType key, AnyType toInsert) {
+        Node<AnyType> tmp = head;
+        if (head == null) {
+            return;
+        }
+
+        //Edge case for head containing key, insert a new node before head
+        if (head.data.equals(key)) {
+            head = new Node<AnyType>(toInsert, head);
+            return;
+        }
+
+        //Continue to find the next one if the next value of the current node is not the one we are looking for
+        while(tmp.next != null && !tmp.next.data.equals(keys)) {
+            tmp = tmp.next;
+        }
+
+        //once jumped out of the while loop up, meaning that the toInsert key has been found, and the tmp key position is the position to insert after, which is also the position before the wanted key.
+        if (tmp.next != null) {
+            tmp.next = new Node<AnyType>(toInsert, tmp.next);
+        }
+    }
+````
+
+- remove一个特定元素，也就是搜索之后再删除
+````java
+    public vodi remove(AnyType key) {
+        //Edge case 
+        if (head == null) {
+            return;
+        }
+
+        if (head.data.equals(key)) {
+            head = null;
+        } else {
+            Node<AnyType> tmp = head;
+            while (tmp.next != null && !tmp.next.data.equaps(key)) {
+                tmp = tmp.next;
+            }
+
+            //found the key to delete, then jumped out of the while loop. 
+            //To delete, jsut need to point the next pointer to the next.next key, so that the wanted value will be skipped.
+            if (tmp.next != null) {
+                tmp.next = tmp.next.next;
+            }
+        }
+    }
+````
+
+- ReversedLinked List
+给定一个head, 把list的连接关系反过来，返回一个linkedlist的新head。有recrusive和iterative两种写法：
+
+1. Iterative
+````java
+    public ListNode reverseList(ListNode head) {
+        //Edge case
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode prev = null;
+        ListNode cur = head;
+        ListNode next;
+
+        //Normal case
+        while (cur != null) {
+            next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
+````
+
 
 
 
