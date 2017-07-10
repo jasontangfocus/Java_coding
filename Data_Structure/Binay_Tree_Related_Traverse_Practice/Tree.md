@@ -222,6 +222,7 @@
 ````
 <br>
 getSuccessor(): 找到某节点下方的下一个节点(如果有的话).是右子树的最左子树。注意这里说的successor不含上面的，因为这种情况下不会有上面是successor的情况。
+
 ````java
     private Node getSuccessor(Node keyNote) {
         Node successorParent = keyNote;
