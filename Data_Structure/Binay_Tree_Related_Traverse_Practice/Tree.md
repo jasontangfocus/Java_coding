@@ -127,12 +127,23 @@
                     curr = curr.left;
                     //found a spot
                     if (curr == null) {
-                        
+                        parent.left = newNode;
+                        return;
+                    } 
+                } else {
+                    //go right
+                    curr = curr.right;
+                    if (curr == null) {
+                        parent.right = newNode;
+                        return;
                     }
                 }
+                //end of if-else to go left or right
             }
+            //end of while
         }
-    }
+        //end of if-else to chekc empty BST or not
+    }//end of insert method
 ````
 
 
