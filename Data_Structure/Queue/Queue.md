@@ -41,7 +41,61 @@
 ### 这里最值得注意的就是循环的方式，head = tail % arr.length 
 
 3. Stack (LeetCode: Implement Queue Using Stacks)
-   
+   用两个stack，push的时候进入第一个，pop的时候则把所有第一个里面的元素pop到第二个，顺序就反过来了，然后pop掉第二个stack头部元素即可。
+````java
+    public class Queue {
+        private Stack<Integer> stack1;
+        private Stack<Integer> stack2;
+
+        public Queue() {
+            stack1 = new Stack<Integer>();
+            stack2 = new Stack<Integer>();
+        }
+
+        private void stack2ToStack1() {
+            while (!stack2.empty()) {
+                stack1.push(stack2.pop());
+            }
+        }
+
+        public void push(int number) {
+            stack2.push(number);
+        }
+
+        public int pop() {
+            if (stack1.empty() == true) {
+                this.stack2ToStack1();
+            }
+            return stack1.pop();
+        }
+
+        public int top() {
+            if (stack1.empty() == true) {
+                this.stack2ToStack1();
+            }
+            return stack1.peek();
+        }
+    }
+````
+
+## 注意事项
+
+- Queue不是线程安全的。Java中线程安全的Queue是Blocking Queue.
+    + Blocking Queue
+      阻塞队列(Blocking Queue)是一个支持两个附加操作的队列。这两个附加操作是：在队列空时，获取元素的线程会等待队列变为非空。当队列满时，存储元素的线程会等待队列可用。阻塞队列常用于生产者何消费者的场景，生产者是往队列里添加元素的线程，消费者是从队列里拿元素的线程。阻塞队列就是生产者存放元素的容器，而消费者也从容器里拿元素。这2个方法分别是put()和take().
+- ArrayDeque Queue是java里的一个interface，除此之外还有一个Deque Interface,与之类似。Deque简而言之就是Stack和Queue结合，我们可以通过它在线性结构的头尾两端自由地存取元素。
+    + Deque Interface
+      而ArrayDeque使用动态数组实现Deque Interface的一个类。它有以下几个特点：
+      1. Array Deque have no capacity restrictions so they grow as necessary to support usage.
+      2. They are not thread safel in the absence of external synchronization
+      3. They do not support concurrent access by multiple threads
+      4. Null elements are prohibited in the array deques.
+      5. They are faster than stack and LinkedList.
+    普通数组只能快速在末尾添加元素，为了支持FIFO, 从数组快速取出元素，就需要使用循环数组：有队头队尾两个下标： 弹出元素时，对头下标递增；加入元素时，如果已到数组空间的末尾，则将元素循环赋值到数组0，同时队尾指向0，再插入下一个元素则赋值到数组[1]，队尾下标指向1。如果队尾的下标追上队头，说明数组所有空间已用完，进行双倍的数组扩容。
+
+## 应用
+1.  BFS里会用到queue, 而它具备逐层记录性质. (参见102 Binary Tree Level Order Traversal)
+
 
 
 
