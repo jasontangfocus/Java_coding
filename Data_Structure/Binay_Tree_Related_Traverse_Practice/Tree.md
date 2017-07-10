@@ -146,6 +146,110 @@
     }//end of insert method
 ````
 
+2. void delete(int key)
+````java
+    public void delete(int key) {
+        //Edge Case, the tree is empty
+        if (root == null) {
+            return;
+        }
+
+        //Normal Case
+        Node curr = root;
+        //keep track of the parent
+        Node parent = root;
+        //flag to check left child
+        boolean isLeftChild = true;
+
+        while (curr.key != key) {
+            parent = curr;
+            if (curr.key > key) {
+                //go left
+                isLeftChild = true;
+                curr = curr.left;
+            } else {
+                //go right
+                isLeftChild = false;
+                curr = curr.right;
+            }
+
+            if (curr == null) {
+                //not found
+                return;
+            }
+        }
+
+        if (curr.left == null && curr.right == null) {
+            if (curr == root) {
+                root = null;
+            } else if (isLeftChild) {
+                parent.left = null;
+            } else {
+                parent.right = null;
+            }
+        } else if (curr.right == null) {
+            //no right child
+            if (curr == root) {
+                root = curr.left;
+            } else if (isLeftChild) {
+                parent.left = curr.left;
+            } else {
+                parent.right = curr.left;
+            }
+        } else if (curr.left == null) {
+            if (curr == root) {
+                root = curr.right;
+            } else if (isLeftChild) {
+                parent.left = curr.right;
+            } else {
+                parent.right = curr.right;
+            }
+        } else {
+            Node successor = getSuccessor(curr);
+
+            if (curr == root) {
+                root = successor;
+            } else if (isLeftChild) {
+                parent.left = successor;
+            } else {
+                parent.right = successor;
+            }
+
+            //need to take care of final connection with curr's left
+            successor.left = curr.left;
+        }
+    }
+````
+<br>
+getSuccessor(): 找到某节点下方的下一个节点(如果有的话).是右子树的最左子树。注意这里说的successor不含上面的，因为这种情况下不会有上面是successor的情况。
+````java
+    private Node getSuccessor(Node keyNote) {
+        Node successorParent = keyNote;
+        Node successor = keyNode;
+        Node curr = keyNode.right;
+
+        //move to left as far as possible in the right subtree
+        while (curr != null) {
+            succcessorParent = successor;
+            successor = curr;
+            curr = curr.left;
+        }
+
+        /*
+        if successor if not the right child of the node to be deleted then need to take care of two connections in the right subtree
+       */
+        if (successor != keyNode.right) {
+            //link the right subtree of successor to its parent on the left
+            successorParent.left = successor.right;
+            //the right tree of the deleted node
+            successor.right = keyNode.right;
+        }
+
+        return successor;
+
+    }
+````
+
 
 
 
