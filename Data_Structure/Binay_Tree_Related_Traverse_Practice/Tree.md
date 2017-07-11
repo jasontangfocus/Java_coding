@@ -251,8 +251,41 @@ getSuccessor(): 找到某节点下方的下一个节点(如果有的话).是右�
     }
 ````
 
+## iterator iterator()
+- 方法：非递归的dfs,要保存遍历的位置，这里用栈。
+- 为什么？实际上就是走迷宫，顺序是指定顺序(一般是中序)，那么每次走完左死角，需要能够回来，走右边的那个死角。stack记录里走的路径，回到其top的元素，就是上一个分叉口的记号。
+````java
+    public class BSTIterator {
+        TreeNode curr;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
 
+        public BSTIterator(TreeNode root) {
+            curr = root;
+        }
 
+        /*@return whether we have a next smallest number
+        */
+        public boolean hasNext() {
+            return (curr != null) || (!stack.isEmpty());
+        }
+
+        // @return the next smallest number
+        public int next() {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+
+            TreeNode node = stack.pop();
+            curr = node.right;
+
+            return node.val;
+        }
+    }
+````
+
+## 为什么用stack? 
+- 想象一下二叉树，我们要压平它，一个node的左边和右边，决定了iteration能捉到的部分。所以，我们就得找一个node的前边和后边，previous和next(所谓successor就是next).那么，怎么找一个node的前边和后边？其实只有几种情况。我们以后边next元素为例。 一个node的next,要么是其右子树的最左端，要么是其ancestor中第一个处于它右边的。前者比较好找，但后者不好记录，这就是为什么我们要用栈来记录。栈到底记录了什么?当前节点的右父辈。为什么是O(1)？均摊分析。
 
 
 
