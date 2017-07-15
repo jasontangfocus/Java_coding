@@ -129,8 +129,34 @@ BST也可以做Binary Search, 一次去掉一半即可。
 
 ````
 
+### Selection Sort
+- 原理：将要排序的对象分作两部分，一个是已排序的，一个是未排序的。如果排序是由小而大，从后段末排序部分选择一个最小值，并放入前端已排序部分的最后一个
+- 时间复杂度也是O(N^2)，但小于Bubble Sort，因为Swap只发生于outer loop. 
 
+````java
+    public static void selectionSort(int[] data) {
+        //set min variable for tmp min value
+        int min;
+        //move forward to right
+        for (int out = 0; out < data.length - 1; out++) {
+            //set initial min index to be out
+            min = out;
+            //move forward to right from out+1 to the end
+            for (int in = out + 1; in < data.length; in++) {
+                //if data is smaller than current min value
+                if(data[in] < data[min]) {
+                    //set a new min index
+                    min = in;
+                }
+            }
+            //swap min value with the first one as we move to the right
+            //swap is happening within the outer loop
+            swap(data, out, min);
+        }
+    }
+````
 
+### Insert Sort
 
 
 
