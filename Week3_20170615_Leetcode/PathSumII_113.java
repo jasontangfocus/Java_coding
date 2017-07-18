@@ -30,7 +30,7 @@ public class PathSumII_113 {
 	public List<List<Integer>> helper(TreeNode root, List<List<Integer>> result,List<Integer> temp, int sum) {
 		//Edge Case
 		if (root == null) {
-			return;
+			return result;
 		}
 
 		//adding the current node to the temporary list preparing beforehead for the result list
@@ -39,7 +39,7 @@ public class PathSumII_113 {
 		//if root value == sum, and root does not have either left and right children, add the root to the result list
 		if (root.left == null && root.right == null &&root.val == sum) {
 			result.add(new ArrayList<Integer>(temp));
-			return;
+			return result;
 		}
 
 		//if the root has the left branch, put the left child of the root to be the root and go into next recrusive level 
