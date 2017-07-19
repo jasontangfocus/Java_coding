@@ -17,3 +17,4 @@ public class MaxDepthOfBinaryTree104 {
 		return maxDepthCount + 1;
 	}
 }
+
