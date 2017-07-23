@@ -83,7 +83,28 @@ public class LoacLimit {
 		LoadLimit loadLimit = new LoadLimit(4, 5);
 
 		System.out.println("=====Test Case 1=====");
-		System.out.println()
+		System.out.println(loadLimit.hit(new Token(1, 1)));
+		System.out.println(loadLimit.hit(new Token(2, 2)));
+		System.out.println(loadLimit.hit(new Token(3, 3)));
+		System.out.println(loadLimit.hit(new Token(3, 4)));
+		System.out.println(loadLimit.hit(new Token(4, 5)));
+		//hit limit return false
+		System.out.println(loadLimit.hit(new Token(4, 6)));
+		//overwrite pre token return true
+		System.out.println(loadLimit.hit(new Token(10, 7)));
+
+		System.out.println("===== Test Case 2=====");
+		loadLimit = new LoadLimit(4, 5);
+		System.out.println(loadLimit.hit(new Token(1, 1)));
+		System.out.println(loadLimit.hit(new Token(2, 2)));
+		System.out.println(loadLimit.hit(new Token(3, 3)));
+		System.out.println(loadLimit.hit(new Token(3, 4)));
+		System.out.println(loadLimit.digest());
+		//un-hit limit return true
+		System.out.println(loadLimit.hit(new Token(4, 6)));
+		System.out.println(loadLimit.hit(new Token(4, 7)));
+		//hit limit return fasle
+		System.out.println(loadLimit.hit(new Token(4, 8)));
 	}
 }
 
